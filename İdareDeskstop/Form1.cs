@@ -74,7 +74,7 @@ namespace İdareDeskstop
                 }
 
             }
-            if(kontrol=false)
+            if(kontrol==false)
             {
                 MessageBox.Show("Giriş Bilginiz Hatalıdır");
             }

@@ -21,6 +21,8 @@ namespace İdareDeskstop
             this.idareciler = idareciler;
         }
 
+
+
         private void ÇağırmaEkranı_Load(object sender, EventArgs e)
         {
 
