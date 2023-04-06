@@ -12,7 +12,7 @@ namespace İdareDeskstop
 {
     public partial class ÇağırmaEkranı : Form
     {
-        List<İdareciler> idareciler;
+        public List<İdareciler> idareciler;
 
         public ÇağırmaEkranı(List<İdareciler> idareciler)
         {
