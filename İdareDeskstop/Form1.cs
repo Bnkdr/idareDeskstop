@@ -27,13 +27,14 @@ namespace İdareDeskstop
         IFirebaseClient client;
 
         
-        ÇağırmaEkranı çağırmaEkranı= new ÇağırmaEkranı();
+       
         public Form1()
         {
             InitializeComponent();
         }
 
         List<İdareciler> idareciler ;
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             try
@@ -65,7 +66,7 @@ namespace İdareDeskstop
             {
                 if (txt_sifre.Text.ToLower() ==$"{idareci.idaresirano}{idareci.idareisim.ToLower()}")
                 {
-                    
+                    ÇağırmaEkranı çağırmaEkranı = new ÇağırmaEkranı(idareciler);
                     this.Hide();
                     çağırmaEkranı.Show();
                     kontrol = true;

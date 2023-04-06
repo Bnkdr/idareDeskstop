@@ -12,12 +12,21 @@ namespace İdareDeskstop
 {
     public partial class ÇağırmaEkranı : Form
     {
-        public ÇağırmaEkranı()
+        List<İdareciler> idareciler;
+
+        public ÇağırmaEkranı(List<İdareciler> idareciler)
         {
             InitializeComponent();
+
+            this.idareciler = idareciler;
         }
 
         private void ÇağırmaEkranı_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
