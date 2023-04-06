@@ -71,6 +71,7 @@ namespace İdareDeskstop
                     kontrol = true;
                     break;
                 }
+
             }
             if(kontrol=false)
             {
