@@ -12,13 +12,13 @@ namespace İdareDeskstop
 {
     public partial class ÇağırmaEkranı : Form
     {
-        public List<İdareciler> idareciler;
+        
 
-        public ÇağırmaEkranı(List<İdareciler> idareciler)
+        public ÇağırmaEkranı()
         {
             InitializeComponent();
 
-            this.idareciler = idareciler;
+            
         }
 
         private void ÇağırmaEkranı_Load(object sender, EventArgs e)
