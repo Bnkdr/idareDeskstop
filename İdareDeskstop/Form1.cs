@@ -66,7 +66,7 @@ namespace İdareDeskstop
             {
                 if (txt_sifre.Text.ToLower() ==$"{idareci.idaresirano}{idareci.idareisim.ToLower()}")
                 {
-                    ÇağırmaEkranı çağırmaEkranı = new ÇağırmaEkranı(idareciler);
+                    ÇağırmaEkranı çağırmaEkranı = new ÇağırmaEkranı();
                     this.Hide();
                     çağırmaEkranı.Show();
                     kontrol = true;
