@@ -133,5 +133,41 @@ namespace İdareDeskstop
 
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string idareciisim = null;
+            string idarecisoyisim = null;
+            string idaregorev = null;
+            foreach (İdareciler idareci in idareciler)
+            {
+                if (txt_çağıranidare.Text == idareci.idaresirano.ToString())
+                {
+                    idareciisim = idareci.idareisim;
+                    idarecisoyisim = idareci.idaresoyisim;
+                    idaregorev = idareci.görev;
+                }
+            }
+
+            int çağrılanidareno = Convert.ToInt32(txt_çağrılanidare.Text);
+
+           Çağrılanİdareci calledAdministration = new Çağrılanİdareci(txt_idareciisim.Text, idareciisim, idarecisoyisim, idaregorev, rtxt_idareaciklama.Text, çağrılanidareno);
+
+            MessageBox.Show($"{txt_idareciisim.Text} idarecisini çağırmak istediğinize emin misiniz?", "Kontrol", MessageBoxButtons.OKCancel);
+
+            bool v = Convert.ToBoolean(MessageBoxButtons.OKCancel);
+
+            if (v == true)
+            {
+                client.Set("CurrentCall/" + "CalledAdministration/" +çağrılanidareno , calledAdministration);
+            }
+            else
+            {
+
+            }
+
+
+
+        }
     }
 }

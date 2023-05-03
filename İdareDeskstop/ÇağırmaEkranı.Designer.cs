@@ -31,7 +31,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.rtxt_aciklama = new System.Windows.Forms.RichTextBox();
             this.txt_idareno = new System.Windows.Forms.TextBox();
@@ -40,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.rtxt_ogretmen = new System.Windows.Forms.RichTextBox();
@@ -49,9 +49,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txt_çağrılanidare = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.rtxt_idareaciklama = new System.Windows.Forms.RichTextBox();
+            this.txt_çağıranidare = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txt_idareciisim = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -68,6 +79,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(2, -2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -90,27 +102,8 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(336, 304);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Öğrenci Çağırma";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.rtxt_ogretmen);
-            this.tabPage2.Controls.Add(this.txt_oIdareNo);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.txt_ogretmenismi);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.comboBox2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(336, 304);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -194,6 +187,25 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(171, 21);
             this.comboBox1.TabIndex = 16;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.rtxt_ogretmen);
+            this.tabPage2.Controls.Add(this.txt_oIdareNo);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.txt_ogretmenismi);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.comboBox2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(336, 304);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Öğretmen Çağırma";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -288,6 +300,100 @@
             this.comboBox2.Size = new System.Drawing.Size(171, 21);
             this.comboBox2.TabIndex = 25;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.txt_çağrılanidare);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.rtxt_idareaciklama);
+            this.tabPage3.Controls.Add(this.txt_çağıranidare);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.txt_idareciisim);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(336, 304);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "İdare Çağırma";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // txt_çağrılanidare
+            // 
+            this.txt_çağrılanidare.Location = new System.Drawing.Point(131, 54);
+            this.txt_çağrılanidare.Name = "txt_çağrılanidare";
+            this.txt_çağrılanidare.Size = new System.Drawing.Size(171, 20);
+            this.txt_çağrılanidare.TabIndex = 42;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(35, 132);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "Açıklama";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(131, 231);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(122, 48);
+            this.button3.TabIndex = 33;
+            this.button3.Text = "Çağır";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // rtxt_idareaciklama
+            // 
+            this.rtxt_idareaciklama.Location = new System.Drawing.Point(131, 129);
+            this.rtxt_idareaciklama.Name = "rtxt_idareaciklama";
+            this.rtxt_idareaciklama.Size = new System.Drawing.Size(171, 96);
+            this.rtxt_idareaciklama.TabIndex = 40;
+            this.rtxt_idareaciklama.Text = "";
+            // 
+            // txt_çağıranidare
+            // 
+            this.txt_çağıranidare.Location = new System.Drawing.Point(131, 25);
+            this.txt_çağıranidare.Name = "txt_çağıranidare";
+            this.txt_çağıranidare.Size = new System.Drawing.Size(171, 20);
+            this.txt_çağıranidare.TabIndex = 39;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 28);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(117, 13);
+            this.label10.TabIndex = 38;
+            this.label10.Text = "Çağıran İdare Numarası";
+            // 
+            // txt_idareciisim
+            // 
+            this.txt_idareciisim.Location = new System.Drawing.Point(131, 78);
+            this.txt_idareciisim.Name = "txt_idareciisim";
+            this.txt_idareciisim.Size = new System.Drawing.Size(171, 20);
+            this.txt_idareciisim.TabIndex = 37;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 81);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(60, 13);
+            this.label11.TabIndex = 36;
+            this.label11.Text = "İdareci İsmi";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 54);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(119, 13);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "Çağrılan İdare Numarası";
+            // 
             // ÇağırmaEkranı
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +408,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -329,5 +437,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox txt_çağrılanidare;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RichTextBox rtxt_idareaciklama;
+        private System.Windows.Forms.TextBox txt_çağıranidare;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txt_idareciisim;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

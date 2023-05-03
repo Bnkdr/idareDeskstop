@@ -79,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ÇağrılanÖğrenci.cs" />
     <Compile Include="ÇağrılanÖğretmen.cs" />
+    <Compile Include="Çağrılanİdareci.cs" />
     <Compile Include="ÇağırmaEkranı.cs">
       <SubType>Form</SubType>
     </Compile>
