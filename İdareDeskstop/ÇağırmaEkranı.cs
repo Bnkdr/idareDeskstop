@@ -75,7 +75,7 @@ namespace İdareDeskstop
             }
             string selectedText = comboBox1.SelectedItem.ToString();
 
-            ÇağrılanÖğrenci calledStudent = new ÇağrılanÖğrenci(selectedText,txt_öğrenciisim.Text,idareciisim,idarecisoyisim,idaregorev);
+            ÇağrılanÖğrenci calledStudent = new ÇağrılanÖğrenci(selectedText,txt_öğrenciisim.Text,idareciisim,idarecisoyisim,idaregorev,rtxt_aciklama.Text);
 
             MessageBox.Show($"{selectedText} sınıfından {txt_öğrenciisim.Text} öğrencisini çağırmak istediğinize emin misiniz?", "Kontrol", MessageBoxButtons.OKCancel);
 
@@ -95,6 +95,43 @@ namespace İdareDeskstop
         private void comboBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string idareciisim = null;
+            string idarecisoyisim = null;
+            string idaregorev = null;
+            foreach (İdareciler idareci in idareciler)
+            {
+                if (txt_oIdareNo.Text == idareci.idaresirano.ToString())
+                {
+                    idareciisim = idareci.idareisim;
+                    idarecisoyisim = idareci.idaresoyisim;
+                    idaregorev = idareci.görev;
+                }
+            }
+            string selectedText2 = comboBox2.SelectedItem.ToString();
+
+            ÇağrılanÖğretmen calledTeacher = new ÇağrılanÖğretmen(selectedText2, txt_ogretmenismi.Text, idareciisim, idarecisoyisim, idaregorev, rtxt_ogretmen.Text);
+
+            MessageBox.Show($"{selectedText2} sınıfından {txt_ogretmenismi.Text} öğretmenini çağırmak istediğinize emin misiniz?", "Kontrol", MessageBoxButtons.OKCancel);
+
+            bool v = Convert.ToBoolean(MessageBoxButtons.OKCancel);
+
+            if (v == true)
+            {
+                client.Set("CurrentCall/" + "CalledTeacher/" + calledTeacher.getSınıf(), calledTeacher);
+            }
+            else
+            {
+
+            }
         }
     }
 }

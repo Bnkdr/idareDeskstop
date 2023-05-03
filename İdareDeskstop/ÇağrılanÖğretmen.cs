@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace İdareDeskstop
 {
-    internal class ÇağrılanÖğrenci
+    internal class ÇağrılanÖğretmen
     {
-
         public string sınıf { get; set; }
         public string isimSoyisim { get; set; }
         public string çağıranİdareciİsim { get; set; }
@@ -16,12 +15,12 @@ namespace İdareDeskstop
         public string çağıranİdareciGorev { get; set; }
         public string acıklama { get; set; }
 
-        public ÇağrılanÖğrenci()
+        public ÇağrılanÖğretmen()
         {
-            
+
         }
 
-        public ÇağrılanÖğrenci(string sınıf, string isimSoyisim, string çağıranİdareciİsim, string çağıranİdareciSoyisim, string çağıranİdareciGorev, string acıklama)
+        public ÇağrılanÖğretmen(string sınıf, string isimSoyisim, string çağıranİdareciİsim, string çağıranİdareciSoyisim, string çağıranİdareciGorev, string acıklama)
         {
             this.sınıf = sınıf;
             this.isimSoyisim = isimSoyisim;
@@ -31,7 +30,12 @@ namespace İdareDeskstop
             this.acıklama = acıklama;
         }
 
-     
+        public string getSınıf()
+        {
+            return this.sınıf;
+        }
+
+
 
     }
 }
