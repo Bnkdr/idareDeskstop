@@ -26,6 +26,13 @@ namespace İdareDeskstop
 
         IFirebaseClient client;
 
+        IFirebaseConfig ifc2 = new FirebaseConfig()
+        {
+            AuthSecret = "2inVCykQM5Pd7bwsaCbMYh38tXU8WcQkMSs1qRhl",
+            BasePath = "https://privatedata-506ba-default-rtdb.firebaseio.com/"
+        };
+
+        IFirebaseClient client2;
         public ÇağırmaEkranı()
         {
             InitializeComponent();
@@ -75,15 +82,19 @@ namespace İdareDeskstop
             }
             string selectedText = comboBox1.SelectedItem.ToString();
 
+         
             ÇağrılanÖğrenci calledStudent = new ÇağrılanÖğrenci(selectedText,txt_öğrenciisim.Text,idareciisim,idarecisoyisim,idaregorev,rtxt_aciklama.Text);
 
             MessageBox.Show($"{selectedText} sınıfından {txt_öğrenciisim.Text} öğrencisini çağırmak istediğinize emin misiniz?", "Kontrol", MessageBoxButtons.OKCancel);
 
+            selectedText = SınıfNoDegistirme(selectedText);
+
             bool v =Convert.ToBoolean( MessageBoxButtons.OKCancel);
 
-            if (v==true)
+          if (v==true)
             {
-                client.Set("CurrentCall/" + "CalledStudent/"+selectedText,calledStudent);
+                client.Set("CurrentCall/" + selectedText,calledStudent);
+                client2.Set("CurrentCall/" + DateTime.Now, calledStudent);
             }
             else
             {
@@ -97,6 +108,92 @@ namespace İdareDeskstop
 
         }
 
+        protected string SınıfNoDegistirme(string selectedText)
+        {
+            if (selectedText == "9A")
+            {
+                selectedText = "091";
+               
+
+            }
+            else if (selectedText == "9B")
+            {
+                selectedText = "092";
+                
+            }
+            else if (selectedText == "9C")
+            {
+                selectedText = "093";
+              
+            }
+            else if (selectedText == "9D")
+            {
+                selectedText = "094";
+               
+            }
+            else if (selectedText == "10A")
+            {
+                selectedText = "101";
+               
+            }
+            else if (selectedText == "10B")
+            {
+                selectedText = "102";
+              
+            }
+            else if (selectedText == "10C")
+            {
+                selectedText = "103";
+               
+            }
+            else if (selectedText == "10D")
+            {
+                selectedText = "104";
+             
+            }
+            else if (selectedText == "11A")
+            {
+                selectedText = "111";
+               
+
+            }
+            else if (selectedText == "11B")
+            {
+                selectedText = "112";
+              
+            }
+            else if (selectedText == "11C")
+            {
+                selectedText = "113";
+              
+            }
+            else if (selectedText == "11D")
+            {
+                selectedText = "114";
+               
+            }
+            else if (selectedText == "12A")
+            {
+                selectedText = "121";
+               
+            }
+            else if (selectedText == "12B")
+            {
+                selectedText = "122";
+                
+            }
+            else if (selectedText == "12C")
+            {
+                selectedText = "123";
+                
+            }
+            else if (selectedText == "12D")
+            {
+                selectedText = "124";
+               
+            }
+            return selectedText;
+        }
         private void label4_Click(object sender, EventArgs e)
         {
 
@@ -118,15 +215,20 @@ namespace İdareDeskstop
             }
             string selectedText2 = comboBox2.SelectedItem.ToString();
 
+            
+
             ÇağrılanÖğretmen calledTeacher = new ÇağrılanÖğretmen(selectedText2, txt_ogretmenismi.Text, idareciisim, idarecisoyisim, idaregorev, rtxt_ogretmen.Text);
 
             MessageBox.Show($"{selectedText2} sınıfından {txt_ogretmenismi.Text} öğretmenini çağırmak istediğinize emin misiniz?", "Kontrol", MessageBoxButtons.OKCancel);
+
+            selectedText2 = SınıfNoDegistirme(selectedText2);
 
             bool v = Convert.ToBoolean(MessageBoxButtons.OKCancel);
 
             if (v == true)
             {
-                client.Set("CurrentCall/" + "CalledTeacher/" + calledTeacher.getSınıf(), calledTeacher);
+                client.Set("CurrentCall/" +selectedText2 , calledTeacher);
+                client2.Set("CurrentCall/" + DateTime.Now, calledTeacher);
             }
             else
             {
@@ -149,9 +251,8 @@ namespace İdareDeskstop
                 }
             }
 
-            int çağrılanidareno = Convert.ToInt32(txt_çağrılanidare.Text);
 
-           Çağrılanİdareci calledAdministration = new Çağrılanİdareci(txt_idareciisim.Text, idareciisim, idarecisoyisim, idaregorev, rtxt_idareaciklama.Text, çağrılanidareno);
+           Çağrılanİdareci calledAdministration = new Çağrılanİdareci(txt_çağrılanidare.Text,txt_idareciisim.Text, idareciisim, idarecisoyisim, idaregorev, rtxt_idareaciklama.Text);
 
             MessageBox.Show($"{txt_idareciisim.Text} idarecisini çağırmak istediğinize emin misiniz?", "Kontrol", MessageBoxButtons.OKCancel);
 
@@ -159,7 +260,8 @@ namespace İdareDeskstop
 
             if (v == true)
             {
-                client.Set("CurrentCall/" + "CalledAdministration/" +çağrılanidareno , calledAdministration);
+                client.Set("CurrentCall/" +txt_çağrılanidare.Text , calledAdministration);
+                client2.Set("CurrentCall/" + DateTime.Now, calledAdministration);
             }
             else
             {
@@ -169,5 +271,7 @@ namespace İdareDeskstop
 
 
         }
+
+
     }
 }

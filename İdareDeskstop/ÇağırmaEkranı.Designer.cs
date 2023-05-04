@@ -167,22 +167,22 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "9/A",
-            "9/B",
-            "9/c",
-            "9/D",
-            "10/A",
-            "10/B",
-            "10/C",
-            "10/D",
-            "11/A",
-            "11/B",
-            "11/C",
-            "11/D",
-            "12/A",
-            "12/B",
-            "12/C",
-            "12/D"});
+            "9A",
+            "9B",
+            "9C",
+            "9D",
+            "10A",
+            "10B",
+            "10C",
+            "10D",
+            "11A",
+            "11B",
+            "11C",
+            "11D",
+            "12A",
+            "12B",
+            "12C",
+            "12D"});
             this.comboBox1.Location = new System.Drawing.Point(111, 59);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(171, 21);
@@ -279,22 +279,22 @@
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "9/A",
-            "9/B",
-            "9/c",
-            "9/D",
-            "10/A",
-            "10/B",
-            "10/C",
-            "10/D",
-            "11/A",
-            "11/B",
-            "11/C",
-            "11/D",
-            "12/A",
-            "12/B",
-            "12/C",
-            "12/D"});
+            "9A",
+            "9B",
+            "9C",
+            "9D",
+            "10A",
+            "10B",
+            "10C",
+            "10D",
+            "11A",
+            "11B",
+            "11C",
+            "11D",
+            "12A",
+            "12B",
+            "12C",
+            "12D"});
             this.comboBox2.Location = new System.Drawing.Point(131, 51);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(171, 21);

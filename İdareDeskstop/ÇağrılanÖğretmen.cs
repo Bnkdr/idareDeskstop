@@ -8,7 +8,7 @@ namespace İdareDeskstop
 {
     internal class ÇağrılanÖğretmen
     {
-        public string sınıf { get; set; }
+        public string çağrılmano { get; set; }
         public string isimSoyisim { get; set; }
         public string çağıranİdareciİsim { get; set; }
         public string çağıranİdareciSoyisim { get; set; }
@@ -20,9 +20,9 @@ namespace İdareDeskstop
 
         }
 
-        public ÇağrılanÖğretmen(string sınıf, string isimSoyisim, string çağıranİdareciİsim, string çağıranİdareciSoyisim, string çağıranİdareciGorev, string acıklama)
+        public ÇağrılanÖğretmen(string çağrılmano, string isimSoyisim, string çağıranİdareciİsim, string çağıranİdareciSoyisim, string çağıranİdareciGorev, string acıklama)
         {
-            this.sınıf = sınıf;
+            this.çağrılmano = çağrılmano;
             this.isimSoyisim = isimSoyisim;
             this.çağıranİdareciİsim = çağıranİdareciİsim;
             this.çağıranİdareciSoyisim = çağıranİdareciSoyisim;
@@ -30,10 +30,6 @@ namespace İdareDeskstop
             this.acıklama = acıklama;
         }
 
-        public string getSınıf()
-        {
-            return this.sınıf;
-        }
 
 
 
