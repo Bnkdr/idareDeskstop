@@ -48,6 +48,7 @@ namespace İdareDeskstop
             try
             {
                 client = new FirebaseClient(ifc);
+                client2 = new FirebaseClient(ifc2);
             }
             catch
             {
@@ -94,7 +95,7 @@ namespace İdareDeskstop
           if (v==true)
             {
                 client.Set("CurrentCall/" + selectedText,calledStudent);
-                client2.Set("CurrentCall/" + DateTime.Now, calledStudent);
+               // client2.Set("CurrentCall/" + DateTime.Now, calledStudent);
             }
             else
             {
@@ -228,7 +229,7 @@ namespace İdareDeskstop
             if (v == true)
             {
                 client.Set("CurrentCall/" +selectedText2 , calledTeacher);
-                client2.Set("CurrentCall/" + DateTime.Now, calledTeacher);
+                //client2.Set("CurrentCall/" + DateTime.Now, calledTeacher);
             }
             else
             {
@@ -258,10 +259,24 @@ namespace İdareDeskstop
 
             bool v = Convert.ToBoolean(MessageBoxButtons.OKCancel);
 
+            DateTimeConverter dtc = new DateTimeConverter();
+
+            //string tarih = DateTime.Now;
+
+            string gün = dtc.ConvertToInvariantString(DateTime.Now.Day);
+            string ay = dtc.ConvertToInvariantString(DateTime.Now.Month);
+            string yıl = dtc.ConvertToInvariantString(DateTime.Now.Year);
+            string saat = dtc.ConvertToInvariantString(DateTime.Now.Hour);
+            string dakika = dtc.ConvertToInvariantString(DateTime.Now.Minute);
+            string saniye = dtc.ConvertToInvariantString(DateTime.Now.Second);
+
+
+
             if (v == true)
             {
+                client2.Set($"CurrentCall/{(gün + " " + ay + " " + yıl)}" +("/"+saat+" "+dakika+" "+saniye), calledAdministration);
                 client.Set("CurrentCall/" +txt_çağrılanidare.Text , calledAdministration);
-                client2.Set("CurrentCall/" + DateTime.Now, calledAdministration);
+               
             }
             else
             {

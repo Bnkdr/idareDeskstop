@@ -21,7 +21,7 @@ namespace İdareDeskstop
             
         }
 
-        public Çağrılanİdareci(string idareciisimsoyisim, string çağıranidareciisim, string çağıranidarecisoyisim, string çağıranidarecigorev, string acıklama,string çağrılanidareno)
+        public Çağrılanİdareci(string çağrılanidareno, string idareciisimsoyisim, string çağıranidareciisim, string çağıranidarecisoyisim, string çağıranidarecigorev,string acıklama)
         {
             this.idareciisimsoyisim = idareciisimsoyisim;
             this.çağıranidareciisim = çağıranidareciisim;
