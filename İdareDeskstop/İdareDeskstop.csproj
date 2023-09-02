@@ -86,6 +86,8 @@
     <Compile Include="ÇağırmaEkranı.Designer.cs">
       <DependentUpon>ÇağırmaEkranı.cs</DependentUpon>
     </Compile>
+    <Compile Include="Öğrenciler.cs" />
+    <Compile Include="Öğretmenler.cs" />
     <Compile Include="İdareciler.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

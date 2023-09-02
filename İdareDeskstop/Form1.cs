@@ -52,12 +52,38 @@ namespace İdareDeskstop
                 FirebaseResponse res= client.Get(@"AdministrationList");
                 Dictionary<string, İdareciler> data = JsonConvert.DeserializeObject<Dictionary<string, İdareciler>>(res.Body.ToString());
                 idareciler = new List<İdareciler>(data.Values);
-            
 
+
+            Feedback();
 
 
         }
 
+        async void Feedback()
+        {
+            while (true)
+            {
+                FirebaseResponse res = await client.GetAsync("Feedback/");
+
+                string no = res.ResultAs<string>();
+
+                if(no!=null)
+                {
+                    FirebaseResponse res2 = await client.GetAsync("Feedback/" + no);
+
+                    string fb = res2.ResultAs<string>();
+
+                    if(fb!=null)
+                    {
+                        MessageBox.Show($"Bir geri dönütünüz var: {fb}");
+                    }
+
+                }
+ 
+               
+
+            }
+        }
         private void btn_giris_Click(object sender, EventArgs e)
         {
             bool kontrol = false;
@@ -70,6 +96,7 @@ namespace İdareDeskstop
                     this.Hide();
                     çağırmaEkranı.Show();
                     kontrol = true;
+                   
                     break;
                 }
 
