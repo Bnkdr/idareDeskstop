@@ -31,6 +31,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cmbox_ogrenci = new System.Windows.Forms.ComboBox();
+            this.btn_ogrenciEkleme = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.rtxt_aciklama = new System.Windows.Forms.RichTextBox();
             this.txt_idareno = new System.Windows.Forms.TextBox();
@@ -39,6 +41,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cmbox_ogretmen = new System.Windows.Forms.ComboBox();
+            this.btn_ogretmenEkle = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.rtxt_ogretmen = new System.Windows.Forms.RichTextBox();
@@ -48,6 +52,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cmbox_idare = new System.Windows.Forms.ComboBox();
+            this.btn_idareEkle = new System.Windows.Forms.Button();
             this.txt_çağrılanidare = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -57,19 +63,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btn_ogrenciEkleme = new System.Windows.Forms.Button();
-            this.btn_ogretmenEkle = new System.Windows.Forms.Button();
-            this.btn_idareEkle = new System.Windows.Forms.Button();
-            this.cmbox_ogrenci = new System.Windows.Forms.ComboBox();
-            this.cmbox_ogretmen = new System.Windows.Forms.ComboBox();
-            this.cmbox_idare = new System.Windows.Forms.ComboBox();
+            this.btn_ListeCagri = new System.Windows.Forms.Button();
+            this.btn_datagridSil = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cagrıilacak_ad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cagrilacak_sinif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cagrilacak_gorev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cagrilacak_aciklama = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_datagridSil = new System.Windows.Forms.Button();
-            this.btn_ListeCagri = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -115,10 +115,28 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(336, 304);
+            this.tabPage1.Size = new System.Drawing.Size(690, 329);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Öğrenci";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cmbox_ogrenci
+            // 
+            this.cmbox_ogrenci.FormattingEnabled = true;
+            this.cmbox_ogrenci.Location = new System.Drawing.Point(111, 86);
+            this.cmbox_ogrenci.Name = "cmbox_ogrenci";
+            this.cmbox_ogrenci.Size = new System.Drawing.Size(171, 21);
+            this.cmbox_ogrenci.TabIndex = 25;
+            // 
+            // btn_ogrenciEkleme
+            // 
+            this.btn_ogrenciEkleme.Location = new System.Drawing.Point(170, 239);
+            this.btn_ogrenciEkleme.Name = "btn_ogrenciEkleme";
+            this.btn_ogrenciEkleme.Size = new System.Drawing.Size(122, 48);
+            this.btn_ogrenciEkleme.TabIndex = 24;
+            this.btn_ogrenciEkleme.Text = "Çağırma Listesine Ekle";
+            this.btn_ogrenciEkleme.UseVisualStyleBackColor = true;
+            this.btn_ogrenciEkleme.Click += new System.EventHandler(this.btn_ogrenciEkleme_Click);
             // 
             // label4
             // 
@@ -212,10 +230,28 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(336, 304);
+            this.tabPage2.Size = new System.Drawing.Size(690, 329);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Öğretmen";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // cmbox_ogretmen
+            // 
+            this.cmbox_ogretmen.FormattingEnabled = true;
+            this.cmbox_ogretmen.Location = new System.Drawing.Point(131, 81);
+            this.cmbox_ogretmen.Name = "cmbox_ogretmen";
+            this.cmbox_ogretmen.Size = new System.Drawing.Size(171, 21);
+            this.cmbox_ogretmen.TabIndex = 34;
+            // 
+            // btn_ogretmenEkle
+            // 
+            this.btn_ogretmenEkle.Location = new System.Drawing.Point(180, 231);
+            this.btn_ogretmenEkle.Name = "btn_ogretmenEkle";
+            this.btn_ogretmenEkle.Size = new System.Drawing.Size(122, 48);
+            this.btn_ogretmenEkle.TabIndex = 33;
+            this.btn_ogretmenEkle.Text = "Çağırma Listesine Ekle";
+            this.btn_ogretmenEkle.UseVisualStyleBackColor = true;
+            this.btn_ogretmenEkle.Click += new System.EventHandler(this.btn_ogretmenEkle_Click);
             // 
             // label5
             // 
@@ -323,6 +359,25 @@
             this.tabPage3.Text = "İdare";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // cmbox_idare
+            // 
+            this.cmbox_idare.FormattingEnabled = true;
+            this.cmbox_idare.Location = new System.Drawing.Point(131, 81);
+            this.cmbox_idare.Name = "cmbox_idare";
+            this.cmbox_idare.Size = new System.Drawing.Size(171, 21);
+            this.cmbox_idare.TabIndex = 44;
+            this.cmbox_idare.SelectedIndexChanged += new System.EventHandler(this.cmbox_idare_SelectedIndexChanged);
+            // 
+            // btn_idareEkle
+            // 
+            this.btn_idareEkle.Location = new System.Drawing.Point(180, 231);
+            this.btn_idareEkle.Name = "btn_idareEkle";
+            this.btn_idareEkle.Size = new System.Drawing.Size(122, 48);
+            this.btn_idareEkle.TabIndex = 43;
+            this.btn_idareEkle.Text = "Çağırma Listesine Ekle";
+            this.btn_idareEkle.UseVisualStyleBackColor = true;
+            this.btn_idareEkle.Click += new System.EventHandler(this.btn_idareEkle_Click);
+            // 
             // txt_çağrılanidare
             // 
             this.txt_çağrılanidare.Location = new System.Drawing.Point(131, 54);
@@ -404,59 +459,25 @@
             this.tabPage4.Text = "Çağırma";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // btn_ogrenciEkleme
+            // btn_ListeCagri
             // 
-            this.btn_ogrenciEkleme.Location = new System.Drawing.Point(170, 239);
-            this.btn_ogrenciEkleme.Name = "btn_ogrenciEkleme";
-            this.btn_ogrenciEkleme.Size = new System.Drawing.Size(122, 48);
-            this.btn_ogrenciEkleme.TabIndex = 24;
-            this.btn_ogrenciEkleme.Text = "Çağırma Listesine Ekle";
-            this.btn_ogrenciEkleme.UseVisualStyleBackColor = true;
-            this.btn_ogrenciEkleme.Click += new System.EventHandler(this.btn_ogrenciEkleme_Click);
+            this.btn_ListeCagri.Location = new System.Drawing.Point(385, 234);
+            this.btn_ListeCagri.Name = "btn_ListeCagri";
+            this.btn_ListeCagri.Size = new System.Drawing.Size(142, 57);
+            this.btn_ListeCagri.TabIndex = 2;
+            this.btn_ListeCagri.Text = "Listedekileri Çağır";
+            this.btn_ListeCagri.UseVisualStyleBackColor = true;
+            this.btn_ListeCagri.Click += new System.EventHandler(this.btn_ListeCagri_Click);
             // 
-            // btn_ogretmenEkle
+            // btn_datagridSil
             // 
-            this.btn_ogretmenEkle.Location = new System.Drawing.Point(180, 231);
-            this.btn_ogretmenEkle.Name = "btn_ogretmenEkle";
-            this.btn_ogretmenEkle.Size = new System.Drawing.Size(122, 48);
-            this.btn_ogretmenEkle.TabIndex = 33;
-            this.btn_ogretmenEkle.Text = "Çağırma Listesine Ekle";
-            this.btn_ogretmenEkle.UseVisualStyleBackColor = true;
-            this.btn_ogretmenEkle.Click += new System.EventHandler(this.btn_ogretmenEkle_Click);
-            // 
-            // btn_idareEkle
-            // 
-            this.btn_idareEkle.Location = new System.Drawing.Point(180, 231);
-            this.btn_idareEkle.Name = "btn_idareEkle";
-            this.btn_idareEkle.Size = new System.Drawing.Size(122, 48);
-            this.btn_idareEkle.TabIndex = 43;
-            this.btn_idareEkle.Text = "Çağırma Listesine Ekle";
-            this.btn_idareEkle.UseVisualStyleBackColor = true;
-            this.btn_idareEkle.Click += new System.EventHandler(this.btn_idareEkle_Click);
-            // 
-            // cmbox_ogrenci
-            // 
-            this.cmbox_ogrenci.FormattingEnabled = true;
-            this.cmbox_ogrenci.Location = new System.Drawing.Point(111, 86);
-            this.cmbox_ogrenci.Name = "cmbox_ogrenci";
-            this.cmbox_ogrenci.Size = new System.Drawing.Size(171, 21);
-            this.cmbox_ogrenci.TabIndex = 25;
-            // 
-            // cmbox_ogretmen
-            // 
-            this.cmbox_ogretmen.FormattingEnabled = true;
-            this.cmbox_ogretmen.Location = new System.Drawing.Point(131, 81);
-            this.cmbox_ogretmen.Name = "cmbox_ogretmen";
-            this.cmbox_ogretmen.Size = new System.Drawing.Size(171, 21);
-            this.cmbox_ogretmen.TabIndex = 34;
-            // 
-            // cmbox_idare
-            // 
-            this.cmbox_idare.FormattingEnabled = true;
-            this.cmbox_idare.Location = new System.Drawing.Point(131, 81);
-            this.cmbox_idare.Name = "cmbox_idare";
-            this.cmbox_idare.Size = new System.Drawing.Size(171, 21);
-            this.cmbox_idare.TabIndex = 44;
+            this.btn_datagridSil.Location = new System.Drawing.Point(188, 234);
+            this.btn_datagridSil.Name = "btn_datagridSil";
+            this.btn_datagridSil.Size = new System.Drawing.Size(142, 57);
+            this.btn_datagridSil.TabIndex = 1;
+            this.btn_datagridSil.Text = "Çağrılacak Kişiyi Sil";
+            this.btn_datagridSil.UseVisualStyleBackColor = true;
+            this.btn_datagridSil.Click += new System.EventHandler(this.btn_datagridSil_Click);
             // 
             // dataGridView1
             // 
@@ -492,26 +513,6 @@
             this.cagrilacak_aciklama.HeaderText = "Çağrı Açıklaması";
             this.cagrilacak_aciklama.Name = "cagrilacak_aciklama";
             this.cagrilacak_aciklama.Width = 230;
-            // 
-            // btn_datagridSil
-            // 
-            this.btn_datagridSil.Location = new System.Drawing.Point(188, 234);
-            this.btn_datagridSil.Name = "btn_datagridSil";
-            this.btn_datagridSil.Size = new System.Drawing.Size(142, 57);
-            this.btn_datagridSil.TabIndex = 1;
-            this.btn_datagridSil.Text = "Çağrılacak Kişiyi Sil";
-            this.btn_datagridSil.UseVisualStyleBackColor = true;
-            this.btn_datagridSil.Click += new System.EventHandler(this.btn_datagridSil_Click);
-            // 
-            // btn_ListeCagri
-            // 
-            this.btn_ListeCagri.Location = new System.Drawing.Point(385, 234);
-            this.btn_ListeCagri.Name = "btn_ListeCagri";
-            this.btn_ListeCagri.Size = new System.Drawing.Size(142, 57);
-            this.btn_ListeCagri.TabIndex = 2;
-            this.btn_ListeCagri.Text = "Listedekileri Çağır";
-            this.btn_ListeCagri.UseVisualStyleBackColor = true;
-            this.btn_ListeCagri.Click += new System.EventHandler(this.btn_ListeCagri_Click);
             // 
             // ÇağırmaEkranı
             // 

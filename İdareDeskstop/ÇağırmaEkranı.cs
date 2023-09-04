@@ -14,6 +14,7 @@ using FireSharp.Response;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace İdareDeskstop
 {
@@ -45,8 +46,12 @@ namespace İdareDeskstop
         List<İdareciler> idareciler;
         List<Öğretmenler> ogretmenler;
         List<Öğrenciler> öğrenciler;
-        List<object> çağrılacaklar;
+        List<Çağrılanİdareci> çağrılacak_idareciler;
+        List<ÇağrılanÖğretmen> çağrılacak_öğretmenler;
+        List<ÇağrılanÖğrenci> çağrılacak_öğrenciler;
         List<string> çağrılacaklarNo;
+
+        List<string> feedbacks;
         private void ÇağırmaEkranı_Load(object sender, EventArgs e)
         {
 
@@ -59,30 +64,57 @@ namespace İdareDeskstop
             {
                 MessageBox.Show("There was an error");
             }
-
-            FirebaseResponse res = client.Get(@"AdministrationList");
-            Dictionary<string, İdareciler> data = JsonConvert.DeserializeObject<Dictionary<string, İdareciler>>(res.Body.ToString());
-            idareciler = new List<İdareciler>(data.Values);
-            foreach(İdareciler idareci in idareciler)
+            try
             {
-                string idr = idareci.idareisim + " " + idareci.idaresoyisim;
-                cmbox_idare.Items.Add(idr);
+                FirebaseResponse res = client.Get(@"AdministrationList");
+                Dictionary<string, İdareciler> data = JsonConvert.DeserializeObject<Dictionary<string, İdareciler>>(res.Body.ToString());
+                idareciler = new List<İdareciler>(data.Values);
+                foreach (İdareciler idareci in idareciler)
+                {
+                    string idr = idareci.idareisim + " " + idareci.idaresoyisim;
+                    cmbox_idare.Items.Add(idr);
+                }
             }
-            
-
-            FirebaseResponse res2 = client.Get(@"TeacherList");
-            Dictionary<string, Öğretmenler> data2 = JsonConvert.DeserializeObject<Dictionary<string, Öğretmenler>>(res2.Body.ToString());
-            ogretmenler = new List<Öğretmenler>(data2.Values);
-            foreach (Öğretmenler öğretmen in ogretmenler)
+            catch
             {
-                string öğr = öğretmen.öğretmenisim + " " + öğretmen.öğretmensoyisim;
-                cmbox_idare.Items.Add(öğr);
+                MessageBox.Show("Administration data couldn't fetched");
+                idareciler = null;
             }
-            FirebaseResponse res3 = client.Get(@"StudentList/2023-2024");
-            Dictionary<string, Öğrenciler> data3 = JsonConvert.DeserializeObject<Dictionary<string, Öğrenciler>>(res3.Body.ToString());
-            öğrenciler = new List<Öğrenciler>(data3.Values);
+            try
+            {
+                FirebaseResponse res2 = client.Get(@"TeacherList");
+                Dictionary<string, Öğretmenler> data2 = JsonConvert.DeserializeObject<Dictionary<string, Öğretmenler>>(res2.Body.ToString());
+                ogretmenler = new List<Öğretmenler>(data2.Values);
+                foreach (Öğretmenler öğretmen in ogretmenler)
+                {
+                    string öğr = öğretmen.öğretmenisim + " " + öğretmen.öğretmensoyisim;
+                    cmbox_ogretmen.Items.Add(öğr);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Teacher data couldn't fetched");
+                ogretmenler = null;
+            }
+            try
+            {
+                FirebaseResponse res3 = client.Get(@"StudentList/2023-2024");
+                Dictionary<string, Öğrenciler> data3 = JsonConvert.DeserializeObject<Dictionary<string, Öğrenciler>>(res3.Body.ToString());
+                if (data3 != null)
+                {
+                    öğrenciler = new List<Öğrenciler>(data3.Values);
+                }
+                
+            }
+            catch
+            {
+                MessageBox.Show("Student data couldn't fetched");
+                öğrenciler = null;
+            }
+            Feedback();
         }
 
+        
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
@@ -139,6 +171,156 @@ namespace İdareDeskstop
         private void comboBox1_Click(object sender, EventArgs e)
         {
 
+        }
+        async void Feedback()
+        {
+
+            while (true)
+            {
+                FirebaseResponse res2 =  await client.GetAsync(@"Feedback");
+                Dictionary<string, string> data2 = JsonConvert.DeserializeObject<Dictionary<string, string>>(res2.Body.ToString());
+                
+                if (data2 != null)
+                {
+                    feedbacks = new List<string>(data2.Values);
+                    int count = 0;
+                    if (feedbacks != null)
+                    {
+                        foreach (string key in feedbacks)
+                        {
+
+                            string çagrilan = noDegistirme(data2.ElementAt(count).Key);
+                            MessageBox.Show($"{çagrilan} {key} çağrıldı");
+                            client.Delete($"Feedback/{data2.ElementAt(count).Key}");
+                            data2.Remove(data2.ElementAt(count).Key);
+                            count++;
+
+                        }
+                        feedbacks = null;
+                    }
+                    
+
+                }
+              
+            }
+
+        }
+        private string noDegistirme(string no)
+        {
+            if( no== "1")
+            {
+                no = "Yadin Çelik'in odası";
+                return no;
+            }
+            else if (no == "2")
+            {
+                no = "Şenay Öztürk'ün odası";
+                return no;
+            }
+            else if (no == "3")
+            {
+                no = "Galip Yavuz'un odası";
+                return no;
+            }
+            else if (no == "4")
+            {
+                no = "İsa Tevfik Kurşun'un odası";
+                return no;
+            }
+            else if (no == "5")
+            {
+                no = "Fikri Etem'in odası";
+                return no;
+            }
+            else if (no == "6")
+            {
+                no = "Formatör'ün odası";
+                return no;
+            }
+            else if (no == "091")
+            {
+                no = "9A";
+                return no;
+            }
+            else if (no == "092")
+            {
+                no = "9B";
+                return no;
+            }
+            else if (no == "093")
+            {
+                no = "9C";
+                return no;
+            }
+            else if (no == "094")
+            {
+                no = "9D";
+                return no;
+            }
+            else if (no == "101")
+            {
+                no = "10A";
+                return no;
+            }
+            else if (no == "102")
+            {
+                no = "10B";
+                return no;
+            }
+            else if (no == "103")
+            {
+                no = "10C";
+                return no;
+            }
+            else if (no == "104")
+            {
+                no = "10D";
+                return no;
+            }
+            else if (no == "111")
+            {
+                no = "11A";
+                return no;
+            }
+            else if (no == "112")
+            {
+                no = "11B";
+                return no;
+            }
+            else if (no == "113")
+            {
+                no = "11C";
+                return no;
+            }
+            else if (no == "114")
+            {
+                no = "11D";
+                return no;
+            }
+            else if (no == "121")
+            {
+                no = "12A";
+                return no;
+            }
+            else if (no == "122")
+            {
+                no = "12B";
+                return no;
+            }
+            else if (no == "123")
+            {
+                no = "12C";
+                return no;
+            }
+            else if (no == "124")
+            {
+                no = "12D";
+                return no;
+            }
+            else
+            {
+                return "No bulunamadı";
+            }
         }
 
         protected string SınıfNoDegistirme(string selectedText)
@@ -329,16 +511,30 @@ namespace İdareDeskstop
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-           
-            string sinif = "";
-            foreach(Öğrenciler öğrenci in öğrenciler)
+            try
             {
-                sinif = öğrenci.sınıf.ToString() + öğrenci.şube;
-                if (sinif==comboBox1.SelectedItem.ToString())
+                string sinif = "";
+                if(öğrenciler!=null)
                 {
-                    string ogr = öğrenci.isim + " " + öğrenci.soyisim;
-                    cmbox_ogrenci.Items.Add(ogr);
+                    foreach (Öğrenciler öğrenci in öğrenciler)
+                    {
+                        sinif = öğrenci.sınıf.ToString() + öğrenci.şube;
+                        if (sinif == comboBox1.SelectedItem.ToString())
+                        {
+                            string ogr = öğrenci.isim + " " + öğrenci.soyisim;
+                            cmbox_ogrenci.Items.Add(ogr);
+                        }
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Öğrenci verisi bulunamadı.");
+                }
+                
+            }
+            catch
+            {
+                
             }
            
         }
@@ -365,7 +561,16 @@ namespace İdareDeskstop
             ÇağrılanÖğrenci calledStudent = new ÇağrılanÖğrenci(selectedText_changed, selectedName, idareciisim, idarecisoyisim, idaregorev, rtxt_aciklama.Text);
             if (diaRes == DialogResult.Yes)
             {
-                çağrılacaklar.Add(calledStudent);
+                if (çağrılacak_öğrenciler == null)
+                {
+                    çağrılacak_öğrenciler = new List<ÇağrılanÖğrenci>();
+
+                }
+                çağrılacak_öğrenciler.Add(calledStudent);
+                if (çağrılacaklarNo == null)
+                {
+                    çağrılacaklarNo = new List<string>();
+                }
                 çağrılacaklarNo.Add(calledStudent.çağrılmano);
                 dataGridView1.Rows.Add(calledStudent.isimSoyisim, selectedText, "öğrenci", calledStudent.acıklama);
                 MessageBox.Show("Öğrenci çağırma listesine eklendi, çağırmak istediğiniz zaman 'Çağırma' bölümünden çağırabilirsiniz.", "Bilgilendirme");
@@ -408,7 +613,15 @@ namespace İdareDeskstop
             ÇağrılanÖğretmen calledTeacher = new ÇağrılanÖğretmen(selectedText2_changed, selected_ogrtmn, idareciisim, idarecisoyisim, idaregorev, rtxt_ogretmen.Text);
             if (diaRes == DialogResult.Yes)
             {
-                çağrılacaklar.Add(calledTeacher);
+                if (çağrılacak_öğretmenler == null)
+                {
+                    çağrılacak_öğretmenler = new List<ÇağrılanÖğretmen>();
+                }
+                çağrılacak_öğretmenler.Add(calledTeacher);
+                if (çağrılacaklarNo == null)
+                {
+                    çağrılacaklarNo = new List<string>();
+                }
                 çağrılacaklarNo.Add(calledTeacher.çağrılmano);
                 dataGridView1.Rows.Add(calledTeacher.isimSoyisim, selectedText2, $"{öğretmen_ders} öğretmeni", calledTeacher.acıklama);
                 MessageBox.Show("Öğretmen çağırma listesine eklendi, çağırmak istediğiniz zaman 'Çağırma' bölümünden çağırabilirsiniz.", "Bilgilendirme");
@@ -439,10 +652,19 @@ namespace İdareDeskstop
 
             Çağrılanİdareci calledAdministration = new Çağrılanİdareci(txt_çağrılanidare.Text, selected_idareci, idarecisoyisim, idareciisim, idaregorev, rtxt_idareaciklama.Text);
 
-            DialogResult diaRes = MessageBox.Show($"{selected_idareci} idarecisini çağırmak istediğinize emin misiniz?", "Kontrol", MessageBoxButtons.YesNo);
+            DialogResult diaRes = MessageBox.Show($"{selected_idareci} idarecisini çağırma listesine eklemek istediğinize emin misiniz?", "Kontrol", MessageBoxButtons.YesNo);
             if (diaRes == DialogResult.Yes)
             {
-                çağrılacaklar.Add(calledAdministration);
+                if (çağrılacak_idareciler == null)
+                {
+                    çağrılacak_idareciler = new List<Çağrılanİdareci>();
+                }
+                
+                çağrılacak_idareciler.Add(calledAdministration);
+                if (çağrılacaklarNo == null)
+                {
+                    çağrılacaklarNo = new List<string>();
+                }
                 çağrılacaklarNo.Add(calledAdministration.çağrılanidarecino);
                 dataGridView1.Rows.Add(calledAdministration.idareciisimsoyisim, "idareci",çağrılanGorev, calledAdministration.acıklama);
                 MessageBox.Show("İdareci çağırma listesine eklendi, çağırmak istediğiniz zaman 'Çağırma' bölümünden çağırabilirsiniz.", "Bilgilendirme");
@@ -455,27 +677,79 @@ namespace İdareDeskstop
 
             if (diaRes == DialogResult.Yes)
             {
-                for (int i = 0; i < çağrılacaklar.Count; i++)
+                if (çağrılacak_öğrenciler != null)
                 {
-                    DateTimeConverter dtc = new DateTimeConverter();
+                    for (int i = 0; i < çağrılacak_öğrenciler.Count; i++)
+                    {
+                        DateTimeConverter dtc = new DateTimeConverter();
 
 
-                    string gün = dtc.ConvertToInvariantString(DateTime.Now.Day);
-                    string ay = dtc.ConvertToInvariantString(DateTime.Now.Month);
-                    string yıl = dtc.ConvertToInvariantString(DateTime.Now.Year);
-                    string saat = dtc.ConvertToInvariantString(DateTime.Now.Hour);
-                    string dakika = dtc.ConvertToInvariantString(DateTime.Now.Minute);
-                    string saniye = dtc.ConvertToInvariantString(DateTime.Now.Second);
-
-                    
-
-
-                    client2.Set($"CurrentCall/{(gün + " " + ay + " " + yıl)}" + ("/" + saat + " " + dakika + " " + saniye), çağrılacaklar[i]);
-                    client.Set("CurrentCall/" + çağrılacaklarNo[i], çağrılacaklar[i]);
+                        string gün = dtc.ConvertToInvariantString(DateTime.Now.Day);
+                        string ay = dtc.ConvertToInvariantString(DateTime.Now.Month);
+                        string yıl = dtc.ConvertToInvariantString(DateTime.Now.Year);
+                        string saat = dtc.ConvertToInvariantString(DateTime.Now.Hour);
+                        string dakika = dtc.ConvertToInvariantString(DateTime.Now.Minute);
+                        string saniye = dtc.ConvertToInvariantString(DateTime.Now.Second);
 
 
 
+
+                        client2.Set($"CurrentCall/{(gün + " " + ay + " " + yıl)}" + ("/" + saat + " " + dakika + " " + saniye), çağrılacak_öğrenciler[i]);
+                        client.Set("CurrentCall/" + çağrılacaklarNo[i], çağrılacak_öğrenciler[i]);
+
+                    }
+                    çağrılacak_öğrenciler = null;
+                    çağrılacaklarNo = null;
                 }
+                if (çağrılacak_öğretmenler != null)
+                {
+                    for (int i = 0; i < çağrılacak_öğretmenler.Count; i++)
+                    {
+                        DateTimeConverter dtc = new DateTimeConverter();
+
+
+                        string gün = dtc.ConvertToInvariantString(DateTime.Now.Day);
+                        string ay = dtc.ConvertToInvariantString(DateTime.Now.Month);
+                        string yıl = dtc.ConvertToInvariantString(DateTime.Now.Year);
+                        string saat = dtc.ConvertToInvariantString(DateTime.Now.Hour);
+                        string dakika = dtc.ConvertToInvariantString(DateTime.Now.Minute);
+                        string saniye = dtc.ConvertToInvariantString(DateTime.Now.Second);
+
+
+
+
+                        client2.Set($"CurrentCall/{(gün + " " + ay + " " + yıl)}" + ("/" + saat + " " + dakika + " " + saniye), çağrılacak_öğretmenler[i]);
+                        client.Set("CurrentCall/" + çağrılacaklarNo[i], çağrılacak_öğretmenler[i]);
+
+                    }
+                    çağrılacak_öğretmenler = null;
+                    
+                }
+                if (çağrılacak_idareciler != null)
+                {
+                    for (int i = 0; i < çağrılacak_idareciler.Count; i++)
+                    {
+                        DateTimeConverter dtc = new DateTimeConverter();
+
+
+                        string gün = dtc.ConvertToInvariantString(DateTime.Now.Day);
+                        string ay = dtc.ConvertToInvariantString(DateTime.Now.Month);
+                        string yıl = dtc.ConvertToInvariantString(DateTime.Now.Year);
+                        string saat = dtc.ConvertToInvariantString(DateTime.Now.Hour);
+                        string dakika = dtc.ConvertToInvariantString(DateTime.Now.Minute);
+                        string saniye = dtc.ConvertToInvariantString(DateTime.Now.Second);
+
+
+
+
+                        client2.Set($"CurrentCall/{(gün + " " + ay + " " + yıl)}" + ("/" + saat + " " + dakika + " " + saniye), çağrılacak_idareciler[i]);
+                        client.Set("CurrentCall/" + çağrılacaklarNo[i], çağrılacak_idareciler[i]);
+
+                    }
+                    çağrılacak_idareciler = null;
+                   
+                }
+                çağrılacaklarNo = null;
             }
             else
             {
@@ -490,8 +764,23 @@ namespace İdareDeskstop
             if (diaRes == DialogResult.Yes)
             {
                 dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
-                çağrılacaklar.Remove(dataGridView1.CurrentRow.Index);
+                string çağrilan = dataGridView1.CurrentRow.Cells[2].ToString();
+                if (çağrilan.Contains("idareci")){
+                    çağrılacak_idareciler.RemoveAt(dataGridView1.CurrentRow.Index);
+                }
+                else if (çağrilan.Contains("öğretmen")){
+                    çağrılacak_öğretmenler.RemoveAt(dataGridView1.CurrentRow.Index);
+                }
+                else if (çağrilan.Contains("öğrenci")){
+                    çağrılacak_öğrenciler.RemoveAt(dataGridView1.CurrentRow.Index);
+                }
+
             }
+        }
+
+        private void cmbox_idare_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
